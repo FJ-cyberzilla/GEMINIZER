@@ -1,6 +1,7 @@
-#`Makefile`
+# Makefile
 
-.PHONY: install dev build test clean deploy docker k8s security audit
+.PHONY: 
+install dev build test clean deploy docker k8s security audit
 
 # Build variables
 BINARY_NAME=geminizer-enterprise
