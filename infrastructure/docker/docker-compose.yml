@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  geminizer-backend:
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/Dockerfile.backend
+    image: geminizer-enterprise/backend:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - ENV=production
+      - PORT=8080
+      - FIRESTORE_PROJECT_ID=${FIRESTORE_PROJECT_ID}
+      - JWT_SECRET=${JWT_SECRET}
+    volumes:
+      - /etc/ssl/certs:/etc/ssl/certs:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+
+  geminizer-frontend:
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/Dockerfile.frontend
+    image: geminizer-enterprise/frontend:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - geminizer-backend
+    environment:
+      - API_BASE_URL=http://localhost:8080
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+    driver: local
+
+networks:
+  default:
+    driver: bridge
