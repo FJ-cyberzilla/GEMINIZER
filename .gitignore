@@ -1,0 +1,100 @@
+# Binaries
+bin/
+dist/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Dependencies
+backend/vendor/
+frontend/node_modules/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build
+build/
+out/
+*.tar.gz
+*.zip
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary
+tmp/
+temp/
+
+# Coverage
+coverage/
+*.coverprofile
+
+# Security
+secrets/
+*.key
+*.pem
+*.crt
+
+# Firestore emulator
+.firebase/
+firebase-debug.log
+firestore-debug.log
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Kubernetes
+.kube/
+kubeconfig
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+
+# Backup
+backup/
+*.bak
+
+# MacOS
+.AppleDouble
+.LSOverride
+
+# Windows
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# Application specific
+uploads/
+generated/
+cache/
