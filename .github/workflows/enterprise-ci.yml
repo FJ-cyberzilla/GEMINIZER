@@ -1,5 +1,7 @@
 # .github/workflows/enterprise-ci.yml
 name: Enterprise CI/CD
+permissions:
+  contents: read
 
 on:
   push:
