@@ -1,0 +1,23 @@
+name: Build and Attest Provenance
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # Required for SLSA provenance
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+      - name: Build artifact
+        run: |
+          uv build
+      - name: Attest Build Provenance
+        uses: ./attest-build-provenance
+        with:
+          subject-path: dist/*.whl
