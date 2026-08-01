@@ -21,3 +21,4 @@ jobs:
         uses: actions/attest@v1
         with:
           subject-path: 'dist/*.whl'
+          predicate-type: https://slsa.dev/provenance/v1
