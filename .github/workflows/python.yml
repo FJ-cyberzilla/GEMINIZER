@@ -27,7 +27,7 @@ jobs:
       run: uv sync
 
     - name: Lint (Mypy)
-      run: make lint
+      run: uv run make lint
 
     - name: Test
-      run: make test
+      run: uv run make test
