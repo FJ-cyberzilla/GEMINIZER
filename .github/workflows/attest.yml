@@ -8,6 +8,8 @@ jobs:
       id-token: write # Required for SLSA provenance
     steps:
       - uses: actions/checkout@v4
+      - name: Debug Checkout
+        run: ls -R attest-build-provenance/
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
