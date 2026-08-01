@@ -23,6 +23,10 @@ run: ## Run all tasks via the CLI
 	@echo "$(GREEN)Running Geminizer...$(RESET)"
 	@PYTHONPATH=. python3 src/geminizer_python/cli.py run
 
+chat: ## Run interactive chat
+	@echo "$(GREEN)Running Geminizer Chat...$(RESET)"
+	@PYTHONPATH=. python3 src/geminizer_python/cli.py chat
+
 lint: ## Run type checking (mypy)
 	@echo "$(YELLOW)Running type checks...$(RESET)"
 	@python3 -m mypy --strict --explicit-package-bases src/ tests/
