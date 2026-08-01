@@ -8,8 +8,6 @@ jobs:
       id-token: write # Required for SLSA provenance
     steps:
       - uses: actions/checkout@v4
-      - name: Debug Checkout
-        run: ls -R attest-build-provenance/
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -20,6 +18,6 @@ jobs:
         run: |
           uv build
       - name: Attest Build Provenance
-        uses: ./attest-build-provenance
+        uses: actions/attest@v1
         with:
-          subject-path: dist/*.whl
+          subject-path: 'dist/*.whl'
