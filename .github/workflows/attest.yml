@@ -1,11 +1,13 @@
 name: Build and Attest Provenance
 on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write # Required for SLSA provenance
+      id-token: write     # Required for Sigstore OIDC signing
+      attestations: write # Required to persist the attestation
     steps:
       - uses: actions/checkout@v4
       - name: Setup Python
@@ -18,7 +20,6 @@ jobs:
         run: |
           uv build
       - name: Attest Build Provenance
-        uses: actions/attest@v1
+        uses: actions/attest@v4
         with:
           subject-path: 'dist/*.whl'
-          predicate-type: https://slsa.dev/provenance/v1
